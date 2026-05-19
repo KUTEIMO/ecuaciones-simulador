@@ -1,0 +1,6 @@
+[client]
+# El guion vive en /guion; el simulador en la página principal.
+toolbarMode = "auto"
+
+[server]
+enableStaticServing = false
