@@ -290,7 +290,7 @@ def _render_block_c() -> None:
         [
             (r"$s$", "Parámetro complejo del polinomio característico"),
             (r"$t$", "Tiempo (s)"),
-            (r"$e^{st}$", "$\neq 0$ para $t \in \mathbb{R}$"),
+            (r"$e^{st}$", r"$\neq 0$ para $t \in \mathbb{R}$"),
         ]
     )
 
@@ -302,7 +302,7 @@ def _render_block_d(pp: PlantParams) -> None:
         st.caption("E.D.O.")
         _latex(leibniz_ode_text(pp))
     with c2:
-        st.caption("$x,\,x',\,x''$")
+        st.caption(r"$x,\,x',\,x''$")
         _latex(r"x=e^{st},\; x'=s e^{st},\; x''=s^2 e^{st}")
     for line in block_d_substitution_lines(pp):
         _latex(line)
