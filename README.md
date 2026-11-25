@@ -46,3 +46,15 @@ La app abre en el navegador (por defecto `http://localhost:8501`).
 ## Repositorio
 
 https://github.com/KUTEIMO/ecuaciones-simulador
+
+
+
+
+
+En el otro PC
+git clone https://github.com/KUTEIMO/ecuaciones-simulador.git
+cd ecuaciones-simulador
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python -m streamlit run app.py

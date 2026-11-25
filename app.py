@@ -49,8 +49,8 @@ from physics_core import (
 from viz_export import fig_to_png_bytes
 
 APP_TITLE_FULL = (
-    "APLICACIÓN DE ESTABILIDAD DINÁMICA PARA COJINETES MAGNÉTICOS ACTIVOS (AMB) "
-    "EN TURBINAS DE ALTA VELOCIDAD"
+    "MAGLEV-EDO — Simulador de Estabilidad Dinámica para Cojinetes Magnéticos Activos (AMB) "
+    "en Turbinas de Alta Velocidad"
 )
 
 # Estilo diapositivas: fondo claro, azul marino
@@ -362,14 +362,23 @@ def sidebar_root_sliders(base_pp: PlantParams, slide_id: str) -> PlantParams:
 
 
 def render_simulator() -> None:
+    st.markdown(
+        """
+        <style>
+        html, body, .stApp { overflow-x: hidden; max-width: 100vw; }
+        .block-container { padding-top: 1.5rem; padding-bottom: 2rem; max-width: 100%; }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
     c0, c1, c2 = st.columns([0.4, 5.2, 0.4])
     with c1:
         st.markdown(
-            f'<p style="text-align:center;font-size:1.02rem;font-weight:700;line-height:1.35;color:#1a365d;">{APP_TITLE_FULL}</p>',
+            f'<p style="text-align:center;font-size:1.1rem;font-weight:700;line-height:1.35;color:#1a365d;">{APP_TITLE_FULL}</p>',
             unsafe_allow_html=True,
         )
     st.caption(
-        "**Grupo 6** — Casos I, II y III · Turbina X-100 (A y B) · AMB interactivo."
+        "**MAGLEV-EDO** — Plataforma Interactiva de Análisis de Estabilidad Dinámica · Casos I, II y III · Turbina X-100 · Control Digital AMB."
     )
 
     init_expo_slide_session()
@@ -379,11 +388,11 @@ def render_simulator() -> None:
         st.markdown("---")
         root_manual = sidebar_roots_sync_before_menu()
         st.selectbox(
-            "Bloque de exposición",
+            "Escenario de simulación",
             list(SLIDE_IDS_ORDER),
             format_func=menu_label,
             key="expo_slide_id",
-            help="Casos I–III, turbina X-100 (A y B) y simulación AMB.",
+            help="Casos I–III, turbina X-100 (A y B) y simulación de lazo digital AMB.",
         )
         case = EXPO_BY_SLIDE_ID[st.session_state.expo_slide_id]
 
@@ -560,13 +569,23 @@ def render_simulator() -> None:
             z.writestr("orbita.png", fig_to_png_bytes(fo2))
             plt.close(fo2)
         zf.seek(0)
-        st.sidebar.download_button("ZIP capturas", zf.getvalue(), "expo_amb.zip")
+        st.sidebar.download_button("ZIP capturas", zf.getvalue(), "maglev_edo_reporte.zip")
 
-    st.sidebar.caption("`python -m streamlit run app.py`")
+    st.sidebar.caption("MAGLEV-EDO · Semillero CreaSoft · Universidad Simón Bolívar")
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="text-align:center; font-size: 0.88rem; opacity:0.85;">
+          <div><strong>MAGLEV-EDO</strong> — Estabilidad Dinámica de Cojinetes Magnéticos Activos</div>
+          <div>Semillero de Investigación CreaSoft · Universidad Simón Bolívar</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 st.set_page_config(
-    page_title="Estabilidad dinámica — AMB",
+    page_title="MAGLEV-EDO | Simulador de Cojinetes Magnéticos Activos",
     layout="wide",
     page_icon="⚙️",
 )
